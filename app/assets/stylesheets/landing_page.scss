@@ -1,0 +1,61 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Raleway:500);
+
+#background-wrapper {
+  background: url('../assets/landing_background.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.title-box {
+  margin: 0;
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.title-box h1 {
+  color: #827f62;
+  font-size: 75px;
+  font-family: 'Pacifico', cursive;
+}
+
+#sign-in-box {
+  height: 10em;
+  position: relative
+}
+
+#sign-in-box {
+  display: inline-flex;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 49%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-button{
+  margin-right: 10%;
+}
+
+.signup-button{
+  margin-left: 20%;
+}
+
+.sub-heading h4 {
+  color: #827f62;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  margin-top: 20px;
+  margin: 0;
+  position: absolute;
+  top: 58%;
+  left: 51%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}

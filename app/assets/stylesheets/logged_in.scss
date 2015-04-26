@@ -1,0 +1,38 @@
+.mentor-list {
+  padding: 1%;
+}
+
+.media-body h2 {
+  padding-top: 30px;
+}
+
+.list-group {
+  margin-right: 5%;
+}
+
+.user-wrapper {
+  display: inline;
+  float: left;
+  margin-left: 1%;
+}
+
+.profile-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-outer {
+  position: fixed;
+  display: block;
+  margin-right: 5%;
+  margin-left: 5%;
+  bottom: 0;
+  overflow: scroll;
+  width: 1000px;
+  height: 250px;
+}
+
+.container-inner {
+  width: 10000px;
+}

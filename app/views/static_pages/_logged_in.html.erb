@@ -1,0 +1,89 @@
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="media">
+
+      <div class="media-left media-top">
+        <%= image_tag current_user.avatar.url(:thumb), :class => "media-object" %>
+      </div>
+
+      <div class="media-body">
+        <h2 class="media-heading">Hello, <%= current_user.name %>!</h2><br />
+        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+
+
+      </div>
+
+      <div style="padding-left: 15px;">
+      <%= simple_form_for @user, url: user_registration_path do |form| %>
+        <%= form.input :avatar, as: :file %>
+        <%= form.submit "Change Picture", :class => "btn btn-success"%>
+      <% end %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-4 mentor-list">
+    <!-- Once mentor model is built fill with erb  -->
+    <div class="list-group">
+      <a href="#" class="list-group-item active">Find a Mentor</a>
+      <a href="#" class="list-group-item">John Johnson<span class="badge">89</span></a>
+      <a href="#" class="list-group-item">Tim Tomson<span class="badge">76</span></a>
+      <a href="#" class="list-group-item">Bob Bobson<span class="badge">34</span></a>
+      <a href="#" class="list-group-item">Ron Ronson<span class="badge">29</span></a>
+      <a href="#" class="list-group-item">Don Donson<span class="badge">28</span></a>
+      <a href="#" class="list-group-item">Bill<span class="badge">26</span></a>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container-outer">
+   <div class="container-inner">
+      <% @users.each do |user|  %>
+    <div class="user-wrapper">
+      <div class="box panel panel-default">
+        <h3 style="margin-left: 10px;"><a href="#"><%= user.name %></a></h3>
+        <!-- img holder will replace with paperclip -->
+        <img class="profile-img"src="assets/bK.png">
+        <div class="panel-body">
+          <p>I'm a user! Play a game!</p><br />
+          <p><%= link_to 'Request Game', new_invitation_path(sender_id: current_user.id, recipient_id: user.id), remote: true, class: 'btn btn-success' %></p><br>
+        </div>
+      </div>
+    </div>
+  <% end %>
+   </div>
+</div>
+
+
+<script>
+  // set variables for Pusher API
+  var pusher = new Pusher('f74ddd7f3eae987007b6');
+  var channelName = 'private-conversation.' + $('body').data('user');
+  var channel = pusher.subscribe(channelName);
+
+  // create an event for game request and render modal window for invitation recipient
+  channel.bind('game_request', function(data) {
+    $('#inner-product-modal').html("<%= escape_javascript(render 'new_room') %>");
+    $('#product-modal').modal("show");
+    // fill in player id fields in new room form
+    $('#player1-field').val($('body').data('user'));
+    $('#player2-field').val(data.from);
+    $('#invitation-field').val(data.invitation);
+    // click submit button twice to ensure that new room is created and user is redirected
+    $('.submit-room').click(function() {
+      $('.submit-room').click(function() {
+        $('#room-create').submit();
+      });
+    });
+  });
+  // create an event for acceptance of the game and creation of the new room - direct invitation sender to the room
+  channel.bind('game_acceptance', function(data) {
+    console.log(data.room);
+    window.location = '/rooms/' + data.room;
+  });
+});
+</script>

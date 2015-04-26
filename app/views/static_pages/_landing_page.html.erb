@@ -1,0 +1,42 @@
+<!-- <head>
+  <link rel="stylesheet" type="text/css" href="assets/landing_page.scss">
+</head> ## NOT NEEDED AS CURRENTLY REQUIRED BY TREE OFF APPLICATION.CSS uncomment if tree is removed -->
+
+<!-- seperate scripts for each button function should combine into one script -->
+<script>
+$(function() {
+  $('#modal_register').click(function() {
+    $('#inner-product-modal').html("<%= escape_javascript(render 'signup_form') %>");
+    $('#product-modal').modal('show');
+  });
+});
+</script>
+<script>
+$(function() {
+  $('#modal_login').click(function() {
+    $('#inner-product-modal').html("<%= escape_javascript(render 'login_form') %>");
+    $('#product-modal').modal('show');
+  });
+});
+</script>
+
+<!-- main landing page if not logged in or when logged out -->
+
+<body id="background-wrapper">
+  <div class="title-box">
+    <h1>Chess Application</h1>
+  </div>
+
+  <div id="sign-in-box">
+    <div class="login-button">
+      <%= link_to 'Log In','#', :id => 'modal_login', :class => 'btn btn-lg btn-success' %>
+    </div>
+    <div class="signup-button">
+      <%= link_to 'Sign Up','#', :id => 'modal_register', :class => 'btn btn-lg btn-success' %>
+    </div>
+  </div>
+
+  <div class="sub-heading">
+    <h4>The quickest way to improve your chess game and get professional instruction.</h4>
+  </div>
+</body>

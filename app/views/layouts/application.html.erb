@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="animate.css">
 </head>
 <body data-user="<%= current_user ? current_user.id : nil %>"> <!-- #set current_user.id as a variable to use in JS files -->
+  <% if user_signed_in? %>
   <%= render 'layouts/header' %>
+  <% end %>
   <%= yield %>
 </body>
 </html>

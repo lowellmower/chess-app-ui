@@ -1,0 +1,33 @@
+<div class="form-group">
+  <h1 style="text-align: center;">Sign up</h1>
+
+  <%= simple_form_for(@user, url: user_registration_path) do |f| %>
+
+    <div class="field" style="padding: 10px;">
+      <%= f.label :name, :class => "col-sm-2 control-label"%><br />
+      <%= f.text_field :name, autofocus: true, :class => "form-control", :placeholder => "name" %>
+    </div>
+
+    <div class="field" style="padding: 15px;">
+      <%= f.label :email, :class => "col-sm-2 control-label" %><br />
+      <%= f.email_field :email, :class => "form-control", :placeholder => "e-mail" %>
+    </div>
+
+    <div class="field" style="padding: 15px;">
+      <%= f.label :password, :class => "col-sm-2 control-label" %>
+      <% if @validatable %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder => "password" %>
+    </div>
+
+    <div class="field" style="padding: 15px;">
+      <%= f.label :password_confirmation, label: "Confirmation", :class => "col-sm-2 control-label" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control", :placeholder => "password" %>
+    </div><br />
+
+    <div class="actions" style="padding-left: 15px;">
+      <%= f.submit "Sign up", :class => "btn btn-md btn-success" %>
+    </div><br />
+  <% end %>
+</div>
